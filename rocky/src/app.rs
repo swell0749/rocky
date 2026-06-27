@@ -1,11 +1,14 @@
+// imports
 use iced::{
     Center, Element, Length, Task,
     widget::{Space, column, row, text},
 };
 
+// enums
 #[derive(Debug, Clone, Copy)]
 pub enum Message {}
 
+// structs
 pub struct App;
 
 impl Default for App {

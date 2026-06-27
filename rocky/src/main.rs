@@ -2,11 +2,15 @@
 // this disables that!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
+// modules
 mod app;
 
+// imports
 use std::error::Error;
+
 use app::App;
 
+// functions
 fn main() -> Result<(), Box<dyn Error>> {
     iced::application(
         App::default,
