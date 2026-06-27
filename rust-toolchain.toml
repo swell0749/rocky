@@ -1,0 +1,7 @@
+# heya!
+# this file is here to tell the rust compiler that it should be compiled using a **nightly** toolchain.
+# a nightly toolchain allows rocky to use features not available in a standard version of rust!
+# as long as you have `rustup` installed, you can acquire a nightly version of `rustc` by running `rustup toolchain install nightly`. 
+
+[toolchain]
+channel = "nightly"

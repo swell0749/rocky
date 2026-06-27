@@ -1,0 +1,13 @@
+# heya!
+# this file is here to tell rustc (despite the folder being called ".cargo") how to compile the project!
+
+[build]
+rustflags = [
+    # this tells rustc to compile the project for YOUR specific cpu.
+    # this speeds up compile time.
+    "-C", "target-cpu=native",
+
+    # this tells rustc to use multiple threads to compile packages.
+    # this speeds up compile time, as it allows multiple packages to build at the same time!
+    "-Z", "threads=8",
+]

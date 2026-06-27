@@ -1,0 +1,23 @@
+[workspace]
+resolver = "3"
+members = ["rocky", "plugins"]
+
+# this is the "dev" build configuration!
+# this is used whenever you leave out the `--release` arg from `cargo run` or `cargo build`.
+# the configuration here prioritizes low compile times, but also has low performance as a result.
+[profile.dev]
+opt-level = 0
+debug = 1
+incremental = true
+codegen-units = 512
+lto = false
+
+# this is the "release" build configuration!
+# this is used whenever you add the `--release` arg to `cargo run` or `cargo build`.
+# the configuration here prioritizes high performance, but also has high compile times as a result.
+[profile.release]
+opt-level = 3
+lto = "thin"
+codegen-units = 8
+strip = "symbols"
+debug = 0
