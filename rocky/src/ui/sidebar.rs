@@ -1,35 +1,43 @@
 // imports
 use iced::{
     Element, Length,
-    widget::{container, column, button},
+    widget::{container, column, button, text},
 };
-use super::{App, Message};
+use crate::app::{App, Message};
 
 // structs
-struct SidebarButton<'a> {
-    pub text: &'a str,
+pub struct SidebarButton {
+    pub text: String,
     pub message: Option<Message>,
+}
+
+#[allow(dead_code)]
+impl SidebarButton {
+    pub fn new(text: String, message: Option<Message>) -> Self {
+        Self { text, message }
+    }
+
+    pub fn text(&self) -> &String {
+        &self.text
+    }
+
+    pub fn message(&self) -> &Option<Message> {
+        &self.message
+    }
 }
 
 // constants
 const CHARACTER_LENGTH: usize = 25;
 
-// note(swell): these are placeholder buttons! they'll be changed soon-ish
-const BUTTONS: &[SidebarButton] = &[
-    SidebarButton {
-        text: "test",
-        message: Some(Message::Button1),
-    },
-
-    SidebarButton {
-        text: "test 2",
-        message: None,
-    }
-];
-
 // functions
 pub fn render<'a>(app: &App) -> Element<'a, Message> {
     let sidebar_open = app.sidebar_open();
+
+    // note(swell): these are placeholder buttons! they'll be changed soon-ish </3
+    let buttons_list = vec![
+        SidebarButton::new("test".to_string(), Some(Message::Button1)),
+        SidebarButton::new("test 2".to_string(), None),
+    ];
 
     let mut buttons = column![]
         .padding(10)
@@ -58,7 +66,7 @@ pub fn render<'a>(app: &App) -> Element<'a, Message> {
 
         // loop through every button to try and find the biggest size
         // todo(swell): optimize this somehow? i'm not sure this is a good idea by any means
-        for button_data in BUTTONS {
+        for button_data in buttons_list.iter() {
             largest_size = button_data.text.len() * CHARACTER_LENGTH;
         }
 
@@ -67,10 +75,10 @@ pub fn render<'a>(app: &App) -> Element<'a, Message> {
 
         // "render" stage
         // this is the stage that actually pushes the buttons to the elements list
-        for button_data in BUTTONS {
-            let rendered_button = button(button_data.text)
+        for button_data in buttons_list.iter() {
+            let rendered_button = button(text(button_data.text.clone()))
                 .width(Length::Fixed(largest_size as f32))
-                .on_press_maybe(button_data.message);
+                .on_press_maybe(button_data.message.clone());
 
             elements.push(rendered_button.into());
         }

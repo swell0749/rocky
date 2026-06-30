@@ -3,7 +3,7 @@ use iced::{
     Element, Length,
     widget::container,
 };
-use super::{App, Message};
+use crate::app::{App, Message};
 
 // functions
 pub fn render<'a>(_app: &App) -> Element<'a, Message> {
