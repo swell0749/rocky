@@ -3,7 +3,8 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 // modules
-mod app;
+pub(crate) mod app;
+pub(crate) mod ui;
 
 // imports
 use std::error::Error;

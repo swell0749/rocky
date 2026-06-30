@@ -3,7 +3,6 @@ use iced::{
     Element, Length,
     widget::container,
 };
-
 use super::{App, Message};
 
 // functions

@@ -1,15 +1,12 @@
-// modules
-mod sidebar;
-mod central;
-
 // imports
 use iced::{
     Element, Task,
-    widget::row,
 };
+use crate::ui;
 
 // enums
 #[derive(Debug, Clone, Copy)]
+#[allow(dead_code)]
 pub enum Message {
     Button1,
     Button2,
@@ -19,7 +16,7 @@ pub enum Message {
 
 // structs
 pub struct App {
-    pub sidebar_open: bool,
+    sidebar_open: bool,
 }
 
 impl Default for App {
@@ -32,7 +29,7 @@ impl Default for App {
 
 impl App {
     /// the update logic of the application
-    /// essentially, it processes messages and updates the state of the app
+    /// it processes messages and updates the state of the app
     pub fn update(&mut self, message: Message) -> Task<Message> {
         match message {
             Message::ToggleSidebar => self.sidebar_open = !self.sidebar_open,
@@ -44,18 +41,16 @@ impl App {
     }
 
     /// the view logic of the application
-    /// essentially, it renders the ui
+    /// it renders the ui
     pub fn view(&self) -> Element<'_, Message> {
-        let mut container = row![]
-            .padding(10)
-            .spacing(10);
+        ui::render(self)
+    }
 
-        let mut elements: Vec<Element<'_, Message>> = Vec::new();
-        
-        elements.push(sidebar::render(self));
-        elements.push(central::render(self));
-
-        container = container.extend(elements);
-        container.into()
+    //////////////////////////////////////////////
+    // private field exposers
+    // note(swell): what are these called??
+    //////////////////////////////////////////////
+    pub fn sidebar_open(&self) -> &bool {
+        &self.sidebar_open
     }
 }
