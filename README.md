@@ -17,7 +17,7 @@ rocky is a toolkit made to make your life easier, with some basic tools aswell a
 
 however, if you DO want to use it:
 
-## how to build
+## how do i build rocky??
 
 firstly, if you haven't already, you gotta install cargo!!! the preferred route is via [rustup](https://rustup.rs/)!
 
@@ -29,11 +29,21 @@ git clone https://github.com/swell0749/rocky.git --depth=1
 
 the `--depth=1` is important because it reduces file sizes and download times by only downloading the current copy of the repository.
 
-then, you gotta use cargo to run the code:
+## how do i run rocky??
+
+firstly, if you want debug logging, set the `RUST_LOG` environment variable to any of these:
+
+- `debug`
+- `info`
+- `warn`
+- `error`
+
+but `error` is the default.
+
+you gotta use cargo to run the code:
 
 ```
 cd rocky
 cargo run
 ```
 
-and enjoy!!!!!!

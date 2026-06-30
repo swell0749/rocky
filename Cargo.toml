@@ -2,6 +2,12 @@
 resolver = "3"
 members = ["rocky", "plugins"]
 
+# this is a shared list of dependencies!
+# if a crate is used more than once within rocky, add it here to make sure crate versions are kept the same between every crate.
+# then, replace it with `{ workspace = true }`!
+[workspace.dependencies]
+log = "0.4"
+
 # this is the "dev" build configuration!
 # this is used whenever you leave out the `--release` arg from `cargo run` or `cargo build`.
 # the configuration here prioritizes low compile times, but also has low performance as a result.

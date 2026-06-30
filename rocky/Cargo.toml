@@ -4,6 +4,13 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+
+# ui
 iced = "0.14"
+
+# logging
+log = { workspace = true }
+fern = { version = "0.7", features = ["colored"] }
+chrono = "0.4"
 
 rocky_plugins = { path = "../plugins" }

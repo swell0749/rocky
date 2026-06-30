@@ -6,6 +6,8 @@
 pub(crate) mod app;
 pub(crate) mod ui;
 
+mod logger;
+
 // imports
 use std::error::Error;
 
@@ -13,13 +15,27 @@ use app::App;
 
 // functions
 fn main() -> Result<(), Box<dyn Error>> {
-    iced::application(
+    logger::init()?;
+
+    log::debug!("starting rocky...");
+
+    let result = iced::application(
         App::default,
         App::update,
         App::view,
     )
         .title("rocky")
-        .run()?;
+        .run();
+
+    match result {
+        Ok(..) => {
+            log::debug!("closing rocky...");
+        },
+
+        Err(e) => {
+            log::error!("error caught: {e}");
+        }
+    }
 
     Ok(())
 }
